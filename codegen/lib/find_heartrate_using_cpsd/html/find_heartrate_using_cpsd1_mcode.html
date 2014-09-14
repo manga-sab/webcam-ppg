@@ -1,0 +1,17 @@
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="1,1"> 1</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S2T26U3">hrtrate</span>=<span class="message warning" id="M1F1C">find_heartrate_using_cpsd</span>(<span class="var type1" id="S3T1U6">ir</span>,<span class="var type1" id="S4T2U7">sampling_rate</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,2"> 2</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,3"> 3</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,4"> 4</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,5"> 5</a></span><span class="line"><span class="comment">%def_length=2^(ceil(log2(length(ir)/8)));</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,6"> 6</a></span><span class="line"><span class="mxinfo" id="T2:U4"><span class="var type1" id="S5T2U10">fft_scl</span>=<span class="mxinfo" id="T2:U6">64</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,7"> 7</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,8"> 8</a></span><span class="line"><span class="comment">%[a b]=cpsd(ir,ir,[],[],fft_scl*def_length,sampling_rate,'onesided');</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,9"> 9</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,10">10</a></span><span class="line"><span class="mxinfo" id="T20:U7"><span class="var type1" id="S6T20U14">a</span>=<span class="mxinfo" id="T20:U9"><span class="mxinfo" id="T20:U10">abs(<span class="mxinfo" id="T19:U11">fft(<span class="mxinfo" id="T1:U12"><span class="var type1" id="S3T1U21">ir</span>.*<span class="mxinfo" id="T1:U14">kaiser(length(<span class="var type1" id="S3T1U26">ir</span>))</span></span>,2.^floor(log2(length(<span class="var type1" id="S3T1U36">ir</span>)*<span class="var type1" id="S5T2U37">fft_scl</span>)))</span>)</span>.^<span class="mxinfo" id="T2:U18">2</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,11">11</a></span><span class="line"><span class="mxinfo" id="T26:U19"><span class="var type1" id="S2T26U41">hrtrate</span>=<span class="mxinfo" id="T26:U21"><span class="mxinfo" id="T26:U22">(<span class="mxinfo" id="T26:U23">(<span class="mxinfo" id="T26:U24">find(<span class="mxinfo" id="T21:U25"><span class="var type1" id="S6T20U50">a</span>==<span class="mxinfo" id="T2:U27">max(<span class="var type1" id="S6T20U53">a</span>)</span></span>)</span>)/<span class="mxinfo" id="T2:U29">length(<span class="var type1" id="S6T20U56">a</span>)</span></span>)*60</span>*<span class="var type1" id="S4T2U58">sampling_rate</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,12">12</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,13">13</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,14">14</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,15">15</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
